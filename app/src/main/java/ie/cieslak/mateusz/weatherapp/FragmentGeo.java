@@ -8,7 +8,6 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -100,23 +99,21 @@ public class FragmentGeo extends Fragment {
         ((TextView)getView().findViewById(R.id.lbl_wind)).setText(sbuf.toString());
         sbuf = new StringBuilder();
         fmt = new Formatter(sbuf);
+
         Picasso.get().load(weather.weatherIconUrl).into((ImageView)getView().findViewById(R.id.img_icon));
-        fmt.format("Sunset: %f", weather.windSpeed);
+
+        fmt.format("Sunset: %s", weather.sunset);
         ((TextView)getView().findViewById(R.id.lbl_sunset)).setText(sbuf.toString());
         sbuf = new StringBuilder();
         fmt = new Formatter(sbuf);
 
-        fmt.format("Sunrise: %f", weather.windSpeed);
+        fmt.format("Sunrise: %s", weather.sunrise);
         ((TextView)getView().findViewById(R.id.lbl_sunrise)).setText(sbuf.toString());
     }
 
     private void updateLocation(Location location) {
 
         currentLocation = location;
-        /*TextView textViewLan = (TextView) getView().findViewById(R.id.label_geo_lat);
-        textViewLan.setText(String.valueOf(location.getLatitude()));
-        TextView textViewLon = (TextView) getView().findViewById(R.id.label_geo_lon);
-        textViewLon.setText(String.valueOf(location.getLongitude()));*/
     }
 
     private LocationListener createLocationListener() {

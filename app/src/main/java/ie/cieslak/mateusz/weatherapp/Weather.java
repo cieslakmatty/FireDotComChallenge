@@ -27,16 +27,14 @@ public class Weather {
             tempMin = Float.parseFloat(data.getJSONObject("main").getString("temp_min")) + KELVIN_TO_CALSIUS;
             humidity = Integer.parseInt(data.getJSONObject("main").getString("humidity"));
             windSpeed = Float.parseFloat(data.getJSONObject("wind").getString("speed"));
-            weatherIconUrl = "http://openweathermap.org/img/w/" + data.getJSONObject("weather").getString("icon");
+            weatherIconUrl = "http://openweathermap.org/img/w/" + data.getJSONArray("weather").getJSONObject(0).getString("icon") + ".png";
             int sunriseUnix = Integer.parseInt(data.getJSONObject("sys").getString("sunrise"));
             Date date = new java.util.Date(sunriseUnix*1000L);
-            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-            sdf.setTimeZone(java.util.TimeZone.getTimeZone("GMT"));
-            sunrise = sdf.format(date);
+            sunrise = new SimpleDateFormat("HH:mm:ss").format(date);
 
             int sunsetUnix = Integer.parseInt(data.getJSONObject("sys").getString("sunset"));
             date = new java.util.Date(sunsetUnix*1000L);
-            sunset = sdf.format(date);
+            sunset = new SimpleDateFormat("HH:mm:ss").format(date);
         } catch (JSONException e) {
             e.printStackTrace();
         }

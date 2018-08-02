@@ -1,9 +1,6 @@
 package ie.cieslak.mateusz.weatherapp;
 
-import android.os.Handler;
-import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.View;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -15,7 +12,6 @@ import cz.msebera.android.httpclient.Header;
 
 public class NetworkManager {
 
-    static final String API_KEY = "b9de121e5d0ba841ce8c0c5f78ec09ef";
     static final String OWM_URL = "https://api.openweathermap.org/data/2.5/weather";
     static final String COORDS = "?lat=%f&lon=%f";
     static final String CITY_NAME = "?q=%s";
@@ -28,7 +24,7 @@ public class NetworkManager {
 
     public static boolean getWeather(double lan, double lon) {
 
-        String endpoint = OWM_URL + COORDS + "&appid=" + API_KEY;
+        String endpoint = OWM_URL + COORDS + "&appid=" + BuildConfig.OWM_TOKEN;
 
         StringBuilder sbuf = new StringBuilder();
         Formatter fmt = new Formatter(sbuf);

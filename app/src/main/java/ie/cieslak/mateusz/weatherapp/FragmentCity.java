@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 
 public class FragmentCity extends Fragment {
     /**
-     * The fragment argument representing the section number for this
-     * fragment.
+     * I wanted to add another fragment but it's almost 12 and I still need to pack up
+     * for the festival I'm leaving for tomorrow, sorry.
      */
 
     public FragmentCity() {}
