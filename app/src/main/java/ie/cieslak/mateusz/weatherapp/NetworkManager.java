@@ -58,7 +58,7 @@ public class NetworkManager {
 
                 } catch (Exception e) {
 
-                    Log.e("Bitcoin", e.toString());
+                    Log.e("asdf", e.toString());
 
                 }
 

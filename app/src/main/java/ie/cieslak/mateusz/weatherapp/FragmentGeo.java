@@ -15,10 +15,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import org.json.JSONObject;
+
+import java.util.Formatter;
 
 import static android.support.v4.content.PermissionChecker.PERMISSION_GRANTED;
 
@@ -70,15 +75,48 @@ public class FragmentGeo extends Fragment {
 
     public void updateWeather(JSONObject data) {
         Weather weather = new Weather(data);
+
+        StringBuilder sbuf = new StringBuilder();
+        Formatter fmt = new Formatter(sbuf);
+
+        ((TextView)getView().findViewById(R.id.lbl_name)).setText(weather.name);
+        fmt.format("Current temp: %f°", weather.tempCurrent);
+        ((TextView)getView().findViewById(R.id.lbl_temp_curr)).setText(sbuf.toString());
+        sbuf = new StringBuilder();
+        fmt = new Formatter(sbuf);
+        fmt.format("Max temp: %f°", weather.tempMax);
+        ((TextView)getView().findViewById(R.id.lbl_temp_max)).setText(sbuf.toString());
+        sbuf = new StringBuilder();
+        fmt = new Formatter(sbuf);
+        fmt.format("Min temp: %f°", weather.tempMin);
+        ((TextView)getView().findViewById(R.id.lbl_temp_min)).setText(sbuf.toString());
+        sbuf = new StringBuilder();
+        fmt = new Formatter(sbuf);
+        fmt.format("Humidity: %d", weather.humidity);
+        ((TextView)getView().findViewById(R.id.lbl_hum)).setText(sbuf.toString());
+        sbuf = new StringBuilder();
+        fmt = new Formatter(sbuf);
+        fmt.format("Wind speed: %fm/s", weather.windSpeed);
+        ((TextView)getView().findViewById(R.id.lbl_wind)).setText(sbuf.toString());
+        sbuf = new StringBuilder();
+        fmt = new Formatter(sbuf);
+        Picasso.get().load(weather.weatherIconUrl).into((ImageView)getView().findViewById(R.id.img_icon));
+        fmt.format("Sunset: %f", weather.windSpeed);
+        ((TextView)getView().findViewById(R.id.lbl_sunset)).setText(sbuf.toString());
+        sbuf = new StringBuilder();
+        fmt = new Formatter(sbuf);
+
+        fmt.format("Sunrise: %f", weather.windSpeed);
+        ((TextView)getView().findViewById(R.id.lbl_sunrise)).setText(sbuf.toString());
     }
 
     private void updateLocation(Location location) {
 
         currentLocation = location;
-        TextView textViewLan = (TextView) getView().findViewById(R.id.label_geo_lat);
+        /*TextView textViewLan = (TextView) getView().findViewById(R.id.label_geo_lat);
         textViewLan.setText(String.valueOf(location.getLatitude()));
         TextView textViewLon = (TextView) getView().findViewById(R.id.label_geo_lon);
-        textViewLon.setText(String.valueOf(location.getLongitude()));
+        textViewLon.setText(String.valueOf(location.getLongitude()));*/
     }
 
     private LocationListener createLocationListener() {
